@@ -61,7 +61,7 @@ class FileAppender:
 
     def __init__(self):
         print("*******[INFO] FileAppender init *******")
-        self.logFile = open("/Users/gauciouss/Desktop/mypython.log", "a+")
+        self.logFile = open("C:/Users/admin/Desktop/mypython.log", "a+")
 
     def doLog(self, msg):
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

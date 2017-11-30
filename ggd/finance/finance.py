@@ -29,27 +29,34 @@ class Finance:
             result = []
             for i in range(len(sortC)):
                 result.append(sortC[i] if i == 0 else sortC[i] + result[i-1])
-            resultP = [round(p/total, 4) for p in result]    
+            resultP = [round(p/total, 4) for p in result]
+            self.logger.debug("{}", resultP)
             return resultP
 
         #計算一組數列在y=f(x)下的面積
         def calculateArea(collection):
             result = 0
-            for i in range(len(collection)-1):
-                area = (collection[i] + collection[i+1]) * 1 / 2
+            #for i in range(len(collection)-1):
+            #    area = (collection[i] + collection[i+1]) * 1 / 2
+            #    result += area
+            cLen = len(collection)
+            r1 = collection[0: cLen-1]
+            r2 = collection[1: cLen]
+            for i in range(cLen - 1):
+                area = (r1[i] + r2[i]) * 1 / 2
                 result += area
             return result
         
         #計算吉尼係數
         def getGiniCoefficient(bs, ss):
-            f = lambda x: (len(x) * 1 /2 - calculateArea(sortAndTransToPercent(x))) / len(x) * 1 /2    
+            f = lambda x: (len(x) * 1 / 2 - calculateArea(sortAndTransToPercent(x))) / len(x) * 1 / 2
             return f(bs) - f(ss)
 
 
         with open(csvPath, encoding="big5") as csvFile:
             csvr = csv.reader(csvFile)
             each_pt_buy_qty = {}
-            each_pt_sell_qty = {}    
+            each_pt_sell_qty = {}
             for row in csvr:
                 pt1 = row[0].strip()
                 pt2 = row[3].strip()
@@ -69,4 +76,4 @@ class Finance:
 
 
 f = Finance()
-print(f.getChipsGini("/Users/gauciouss/Desktop/3481-1.csv"))
+print(f.getChipsGini("C:/Users/admin/Desktop/3031.csv"))
