@@ -99,5 +99,5 @@ class FinanceSeasonReportCollector:
 
 
 
-a = FinanceSeasonReportCollector()
-a.getData("1409", "95")
+#a = FinanceSeasonReportCollector()
+#a.getData("1409", "95")

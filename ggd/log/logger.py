@@ -16,13 +16,11 @@ class Logger:
 
     level = "ALL"
 
-    
-
-    def __init__(self, clz, *appenders):        
+    def __init__(self, clz, *appenders):
         if len(self.appenders) == 0:
             for appender in appenders:
                 self.appenders.append(appender)
-        self.clz = clz        
+        self.clz = clz
 
     def trace(self, msg, *args):
         if self.levels.get(self.level) <= 1:
@@ -36,8 +34,6 @@ class Logger:
         if self.levels.get(self.level) <= 3:
             self.doLog("INFO", msg, *args)
 
-    
-
     def error(self, msg, *args):
         if self.levels.get(self.level) >= 4:
             self.doLog("ERROR", msg, *args)
@@ -45,7 +41,6 @@ class Logger:
     def fatel(self, msg, *args):
         if self.levels.get(self.level) is 5:
             self.doLog("FATEL", msg, *args)
-
 
     def doLog(self, level, msg, *args):
         target = self.clz.__class__.__name__
@@ -61,7 +56,7 @@ class FileAppender:
 
     def __init__(self):
         print("*******[INFO] FileAppender init *******")
-        self.logFile = open("C:/Users/admin/Desktop/mypython.log", "a+")
+        self.logFile = open("/Users/gauciouss/Desktop/mypython.log", "a+")
 
     def doLog(self, msg):
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -70,8 +65,6 @@ class FileAppender:
     def __del__(self):
         if self.logFile is not None:
             self.logFile.close()
-
-
 
 class ConsoleAppender:
 
